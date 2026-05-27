@@ -1,11 +1,10 @@
 selenium
 pytest
-pytest-xdist
 pytest-html
+pytest-xdist
 pytest-rerunfailures
 allure-pytest
-requests
-PyYAML
-webdriver-manager
 fastapi
 uvicorn
+requests
+PyYAML

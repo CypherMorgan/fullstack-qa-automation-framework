@@ -1,3 +1,4 @@
+from framework.utils.waits import Waits
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
@@ -38,7 +39,7 @@ class LoginPage:
     def click_login(self):
 
         try:
-            self.driver.find_element(*self.login_button).click()
+            Waits.clickable(self.driver, self.login_button).click()
 
         except NoSuchElementException:
             raise Exception("Login button not found on login page")
