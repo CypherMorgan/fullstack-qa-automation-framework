@@ -1,5 +1,6 @@
 import allure
 import pytest
+from datetime import datetime
 from framework.core.driver_factory import DriverFactory
 from framework.core.config_loader import ConfigLoader
 from framework.utils.screenshot import take_screenshot
@@ -70,12 +71,29 @@ def pytest_runtest_makereport(item, call):
         driver = item.funcargs.get("driver")
 
         if driver:
-            screenshot_path = take_screenshot(driver, item.name)
+
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            screenshot_name = f"{item.name}_{timestamp}"
+
+            screenshot_path = take_screenshot(driver, screenshot_name)
 
             allure.attach.file(
                 screenshot_path,
-                name="screenshot",
+                name="Failure Screenshot",
                 attachment_type=allure.attachment_type.PNG
+            )
+
+            allure.attach(
+                str(report.longrepr),
+                name="Traceback",
+                attachment_type=allure.attachment_type.TEXT
+            )
+
+            allure.attach(
+                driver.page_source,
+                name="Page Source",
+                attachment_type=allure.attachment_type.HTML
             )
 
             if hasattr(report, "extra"):
