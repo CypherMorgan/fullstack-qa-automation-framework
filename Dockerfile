@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN mkdir -p \
+    allure-results \
+    reports \
+    screenshots \
+    logs
+
+CMD ["pytest", "tests", "--env=dev", "--alluredir=allure-results"]

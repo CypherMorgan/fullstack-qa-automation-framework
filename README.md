@@ -1,4 +1,4 @@
-# 🚀 Hybrid QA Automation Framework (Python + Selenium + API + DB + CI/CD)
+# 🚀 Fullstack QA Automation Framework (Python + Selenium + API + DB + CI/CD)
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Selenium](https://img.shields.io/badge/Selenium-Automation-green?logo=selenium)
@@ -27,6 +27,21 @@ This framework demonstrates how modern QA systems validate applications across *
 
 ## 🔗 Live Reports
 - Allure Report: https://cyphermorgan.github.io/fullstack-qa-automation-framework/
+
+# 🛠️ Tech Stack
+
+| Category | Tools |
+|---|---|
+| Language | Python 3.11 |
+| UI Automation | Selenium WebDriver |
+| Test Runner | PyTest |
+| API Testing | Requests, Postman, Newman |
+| Mock Services | FastAPI |
+| Database | SQLite |
+| Reporting | Allure, pytest-html |
+| Containerization | Docker, Docker Compose |
+| CI/CD | GitHub Actions |
+| Parallel Execution | pytest-xdist |
 
 # 🔥 Key Features
 
@@ -86,6 +101,15 @@ This framework demonstrates how modern QA systems validate applications across *
 * Built with FastAPI
 * Ensures deterministic and reliable API tests
 
+### 🐳 Containerized Infrastructure
+
+* Docker Compose orchestration
+* Selenium standalone Chrome container
+* FastAPI mock server container
+* PyTest execution container
+* Persistent report and artifact volumes
+* Environment-isolated execution
+
 ---
 
 # 📁 Project Structure
@@ -132,28 +156,56 @@ fullstack-qa-automation-framework/
 
 # 🧠 Framework Architecture
 
-### UI Layer
+```text
+                    GitHub Actions
+                           │
+                           ▼
+                  Docker Compose Stack
+                           │
+        ┌──────────────────┼──────────────────┐
+        ▼                  ▼                  ▼
+ Selenium Container   Mock API Server    PyTest Container
+        │                  │                  │
+        ▼                  ▼                  ▼
+ Chrome Browser       FastAPI Service    UI/API/DB Tests
+                           │
+                           ▼
+                    Allure Reports
+```
 
-Handles frontend automation using Selenium and Page Object Model.
+---
 
-### API Layer
+## UI Layer
+
+Handles frontend automation using Selenium WebDriver and the Page Object Model (POM).
+
+---
+
+## API Layer
 
 Handles backend validation using:
 
-* Python API client
-* Postman + Newman
+- Python API client
+- Postman collections
+- Newman CLI execution
 
-### DB Layer
+---
 
-Validates backend data using SQL queries.
+## Database Layer
 
-### Integration Layer
+Validates backend data consistency using SQLite queries and API-to-DB validation checks.
 
-Combines:
+---
 
-* API responses
-* Database data
-  to validate consistency across systems.
+## Infrastructure Layer
+
+Provides:
+
+- Dockerized execution
+- Service orchestration
+- Environment isolation
+- CI/CD integration
+- Artifact persistence
 
 ---
 
@@ -177,8 +229,16 @@ pytest tests --env=dev
 
 ## 🔹 Run with parallel execution
 
+Run tests concurrently using pytest-xdist:
+
 ```bash
-pytest tests -n 4
+pytest tests -n 2
+```
+
+Example:
+
+```bash
+pytest tests/ui -n 2 --env=local
 ```
 
 ---
@@ -189,6 +249,48 @@ pytest tests -n 4
 pytest tests/ui
 pytest tests/api
 pytest tests/db
+```
+
+---
+
+# 🌍 Environment Modes
+
+The framework supports multiple execution environments.
+
+| Mode | Description |
+|------|-------------|
+| local | Local Selenium + local mock server |
+| dev | Dockerized execution |
+| CI | GitHub Actions pipeline |
+
+---
+
+## Local Execution
+
+### Start Selenium
+
+```bash
+docker run -d -p 4444:4444 selenium/standalone-chrome:4.21.0
+```
+
+### Start Mock Server
+
+```bash
+uvicorn mock_server.app:app --host 127.0.0.1 --port 8000
+```
+
+### Run Tests
+
+```bash
+pytest --env=local
+```
+
+---
+
+## Docker Execution
+
+```bash
+docker compose up --build
 ```
 
 ---
@@ -248,6 +350,52 @@ GitHub Actions automatically:
 
 ---
 
+# 🐳 Dockerized Execution
+
+This framework supports fully containerized execution using Docker Compose.
+
+Services include:
+
+- Selenium standalone Chrome
+- FastAPI mock server
+- PyTest execution container
+
+## Build Containers
+
+```bash
+docker compose build
+```
+
+## Run Full Stack
+
+```bash
+docker compose up --build
+```
+
+## Stop Containers
+
+```bash
+docker compose down
+```
+
+---
+
+# Container Architecture
+
+```text
+automation-tests
+    ↓
+selenium container
+    ↓
+chrome browser
+
+automation-tests
+    ↓
+mock-server container
+```
+
+---
+
 # 🔍 Example Test Flow
 
 ```text
@@ -278,19 +426,24 @@ Deploy report to GitHub Pages
 
 ---
 
-# 🔮 Future Enhancements
+# 📚 Key Engineering Concepts Practiced
 
-* Docker containerization
-* Cross-browser grid execution (Selenium Grid)
-* Allure + Newman report integration
-* Performance testing integration
-* Cloud execution (BrowserStack / Sauce Labs)
+* Remote WebDriver execution
+* Docker container orchestration
+* Environment-based configuration management
+* CI/CD pipeline integration
+* Service isolation and dependency management
+* Parallel test execution
+* API mocking strategies
+* Multi-layer validation (UI + API + DB)
+* Persistent reporting and artifact handling
+* Scalable test framework architecture
 
 ---
 
 # 👤 Author
 
-Built as a hands-on project to simulate a **real-world QA automation framework** used in modern engineering teams.
+Designed to simulate a modern enterprise-grade QA automation ecosystem with UI, API, database, reporting, containerization, and CI/CD integration.
 
 ---
 
