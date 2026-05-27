@@ -1,0 +1,10 @@
+INFO     TestRunner:conftest.py:46 Initializing WebDriver
+INFO     TestRunner:conftest.py:51 Opening URL: https://the-internet.herokuapp.com/login
+INFO     LoginTest:test_login.py:20 Testing login with user: 'wrong_user'
+INFO     LoginTest:test_login.py:21 Test data -> username: 'wrong_user', password: 'wrong_pass', expected: 'failure'
+INFO     LoginTest:test_login.py:26 Entering username
+INFO     LoginTest:test_login.py:29 Entering password
+INFO     LoginTest:test_login.py:32 Clicking login button
+INFO     LoginTest:test_login.py:37 Login response message: 'your username is invalid!'
+INFO     LoginTest:test_login.py:59 Login failure validated
+INFO     TestRunner:conftest.py:57 Quitting WebDriver
