@@ -1,3 +1,0 @@
-2026-05-27 17:03:58,822 | INFO | TestRunner | Initializing WebDriver
-2026-05-27 17:03:59,110 | INFO | TestRunner | Opening URL: https://the-internet.herokuapp.com/login
-2026-05-27 17:03:59,833 | INFO | TestRunner | Quitting WebDriver
