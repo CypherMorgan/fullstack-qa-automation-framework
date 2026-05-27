@@ -88,10 +88,10 @@ This framework demonstrates how modern QA systems validate applications across *
 
 ---
 
-# 🧱 Project Structure
+# 📁 Project Structure
 
-```bash
-fullstack-qa-automation-framework
+```text
+fullstack-qa-automation-framework/
 │
 ├── tests/
 │   ├── ui/
@@ -113,9 +113,15 @@ fullstack-qa-automation-framework
 ├── config/
 │
 ├── reports/
+├── allure-results/
 ├── screenshots/
 ├── logs/
 │
+├── .github/
+│   └── workflows/
+│
+├── docker-compose.yml
+├── Dockerfile
 ├── conftest.py
 ├── pytest.ini
 ├── requirements.txt
